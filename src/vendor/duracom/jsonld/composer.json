@@ -1,0 +1,22 @@
+{
+	"name": "duracom/jsonld",
+	"description": "Duracom Json+ld package",
+	"license": "proprietary",
+	"type": "library",
+	"authors": [
+		{
+			"name": "Duracom",
+			"email": "info@duracom.nl",
+			"homepage": "https://www.duracom.nl/",
+			"role": "Owner"
+		}
+	],
+	"require": {
+		"php": ">=7.1.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Duracom\\JsonLd\\": "src"
+		}
+	}
+}
