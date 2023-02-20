@@ -1,0 +1,23 @@
+{
+    "name": "duracom/duracom-site-module",
+    "description": "Beheer je contactgegevens, openingstijden & locatie d.m.v. Json LD, disable comments, trackback & spam, remove wp_generator",
+    "type": "project",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Duracom",
+            "email": "info@duracom.nl",
+            "role": "Owner",
+            "homepage": "https://www.duracom.nl"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.duracom.nl"
+        }
+    ],
+    "require": {
+        "duracom/jsonld": "^1.1"
+    }
+}

@@ -1,0 +1,65 @@
+#toplevel_page_duracom-site-module img {
+    width:20px;
+    height:20px;
+}
+
+/**
+settings menu page
+ */
+.duracom-container {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.col-12 {
+    display: flex;
+    width: 100%;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    padding: 0 10px;
+}
+
+.col-6 {
+    display: flex;
+    width: calc(50% - 20px);
+    flex-flow: row wrap;
+    align-items: flex-start;
+    padding: 0 10px;
+}
+
+.px-20 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.pt-20 {
+    padding-top: 20px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mr-auto {
+    margin-right: auto;
+}
+
+label {
+    font-weight: bold;
+}
+
+.border-top {
+    border-top: 1px solid #bcbcbc;
+}
+
+.duracom-container input,
+.duracom-container select,
+.duracom-container textarea {
+    min-width: 350px;
+}
+
+.button {
+    cursor: pointer;
+}

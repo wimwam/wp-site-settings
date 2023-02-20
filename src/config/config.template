@@ -1,0 +1,3 @@
+<?php
+const THEME_URL = '';
+const SETTINGS_URL = THEME_URL . '';

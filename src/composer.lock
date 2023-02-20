@@ -1,0 +1,60 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "0eb3f4ffd508e96375d3df9ae807a555",
+    "packages": [
+        {
+            "name": "duracom/jsonld",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:Duracom/jsonld.git",
+                "reference": "4b43ec3c72dc98d5ecb71bbbc98d4fe84d784c64"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Duracom/jsonld/zipball/4b43ec3c72dc98d5ecb71bbbc98d4fe84d784c64",
+                "reference": "4b43ec3c72dc98d5ecb71bbbc98d4fe84d784c64",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Duracom\\JsonLd\\": "src"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Duracom",
+                    "email": "info@duracom.nl",
+                    "homepage": "https://www.duracom.nl/",
+                    "role": "Owner"
+                }
+            ],
+            "description": "Duracom Json+ld package",
+            "support": {
+                "source": "https://github.com/Duracom/jsonld/tree/1.1.1",
+                "issues": "https://github.com/Duracom/jsonld/issues"
+            },
+            "time": "2021-06-17T10:04:05+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.1.0"
+}
