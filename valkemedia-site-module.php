@@ -1,14 +1,14 @@
 <?php
 /*
-Plugin Name: Duracom site module
-Plugin URI: https://duracom.nl/
+Plugin Name: Valkemedia site module
+Plugin URI: https://valkemedia.nl/
 Description: Beheer je contactgegevens, openingstijden & locatie d.m.v. Json LD, disable comments, trackback & spam, remove wp_generator
-Version: 1.2.0
-Author: Duracom Internetdiensten
-Author URI: https://duracom.nl/
+Version: 2.0
+Author: Wiebe-Jan Valkema
+Author URI: https://valkemedia.nl/
 Gemaakt door: WJ Valkema
 License: GPLv2 or later
-Text Domain: duracom
+Text Domain: valkemedia
 */
 
 use Duracom\JsonLd\JsonLd;
@@ -28,20 +28,20 @@ require_once plugin_dir_path(__FILE__) . 'src/config/config.php';
 require_once plugin_dir_path(__FILE__) . 'src/vendor/autoload.php';
 
 /**
- * Class duracomSiteModule
+ * Class siteModule
  */
-class duracomSiteModule
+class siteModule
 {
     /**
-     * duracomSiteModule constructor.
+     * siteModule constructor.
      */
     public function __construct()
     {
         remove_action('wp_head', 'wp_generator');
         /**
-         * Duracom menu item
+         * Valkemedia menu item
          */
-        add_action('admin_menu', 'duracom_add_menu_page');
+        add_action('admin_menu', 'valkemedia_add_menu_page');
 
         /**
          * comments blok uit menu halen
@@ -88,20 +88,20 @@ class duracomSiteModule
     }
 }
 
-add_action( 'admin_enqueue_scripts', 'duracom_load_admin_styles' );
-function duracom_load_admin_styles() {
-    wp_enqueue_style( 'admin_css_duracom', plugins_url('duracom-site-module') . '/assets/css/style.css', false, '1.0.0' );
+add_action( 'admin_enqueue_scripts', 'valkemedia_load_admin_styles' );
+function valkemedia_load_admin_styles() {
+    wp_enqueue_style( 'admin_css_valkemedia', plugins_url('valkemedia-site-module') . '/assets/css/style.css', false, '1.0.0' );
 }
 
 /**
- * Duracom settings page
+ * valkemedia settings page
  * Settings worden o.a. gebruikt om templates op te bouwen, als in ook in de JsonLD module die we in de templates
  * gebruiken. Alle modules worden dan vanuit de /vendor/ map in het custom thema geladen.
  */
-function duracom_settings_menu_page()
+function valkemedia_settings_menu_page()
 {
     ?>
-    <div class="duracom-container">
+    <div class="valkemedia-container">
         <div class="col-12 px-20">
             <h1>Website instellingen</h1>
         </div>
@@ -121,25 +121,25 @@ function duracom_settings_menu_page()
                 <label for="kvknummer">KVK nummer:</label>
             </div>
             <div class="col-12">
-                <input type="text" name="kvknummer" id="kvknummer" value="<?= get_option('duracom_settings_kvknummer') ?>" />
+                <input type="text" name="kvknummer" id="kvknummer" value="<?= get_option('valkemedia_settings_kvknummer') ?>" />
             </div>
             <div class="col-12 mt-20">
                 <label for="telefoonnummer">Telefoonnummer:</label>
             </div>
             <div class="col-12">
-                <input type="text" name="telefoonnummer" id="telefoonnummer" value="<?= get_option('duracom_settings_telefoonnummer') ?>" />
+                <input type="text" name="telefoonnummer" id="telefoonnummer" value="<?= get_option('valkemedia_settings_telefoonnummer') ?>" />
             </div>
             <div class="col-12 mt-20">
                 <label for="telefoonnummer2">Telefoonnummer 2:</label>
             </div>
             <div class="col-12">
-                <input type="text" name="telefoonnummer2" id="telefoonnummer2" value="<?= get_option('duracom_settings_telefoonnummer2') ?>" />
+                <input type="text" name="telefoonnummer2" id="telefoonnummer2" value="<?= get_option('valkemedia_settings_telefoonnummer2') ?>" />
             </div>
             <div class="col-12 mt-20">
                 <label for="emailadres">E-mail adres:</label>
             </div>
             <div class="col-12">
-                <input type="email" name="emailadres" id="emailadres" value="<?= get_option('duracom_settings_emailadres') ?>" />
+                <input type="email" name="emailadres" id="emailadres" value="<?= get_option('valkemedia_settings_emailadres') ?>" />
             </div>
         </div>
         <div class="col-12">
@@ -150,49 +150,49 @@ function duracom_settings_menu_page()
                 <label for="plaats">Straatnaam:</label>
             </div>
             <div class="col-12">
-                <input type="text" name="straatnaam" id="straatnaam" value="<?= get_option('duracom_settings_straatnaam') ?>" />
+                <input type="text" name="straatnaam" id="straatnaam" value="<?= get_option('valkemedia_settings_straatnaam') ?>" />
             </div>
             <div class="col-12 mt-20">
                 <label for="postcode">Postcode:</label>
             </div>
             <div class="col-12">
-                <input type="text" name="postcode" id="postcode" value="<?= get_option('duracom_settings_postcode') ?>" />
+                <input type="text" name="postcode" id="postcode" value="<?= get_option('valkemedia_settings_postcode') ?>" />
             </div>
             <div class="col-12 mt-20">
                 <label for="woonplaats">Woonplaats:</label>
             </div>
             <div class="col-12">
-                <input type="text" name="woonplaats" id="woonplaats" value="<?= get_option('duracom_settings_woonplaats') ?>" />
+                <input type="text" name="woonplaats" id="woonplaats" value="<?= get_option('valkemedia_settings_woonplaats') ?>" />
             </div>
             <div class="col-12 mt-20">
                 <label for="postadres">Postadres:</label>
             </div>
             <div class="col-12">
-                <input type="text" name="postadres" id="postadres" value="<?= get_option('duracom_settings_postadres') ?>" />
+                <input type="text" name="postadres" id="postadres" value="<?= get_option('valkemedia_settings_postadres') ?>" />
             </div>
             <div class="col-12 mt-20">
                 <label for="postadresnummer">Postadres huisnummer/postbusnummer:</label>
             </div>
             <div class="col-12">
-                <input type="text" name="postadresnummer" id="postadresnummer" value="<?= get_option('duracom_settings_postadresnummer') ?>" />
+                <input type="text" name="postadresnummer" id="postadresnummer" value="<?= get_option('valkemedia_settings_postadresnummer') ?>" />
             </div>
             <div class="col-12 mt-20">
                 <label for="postadresplaats">Postadres plaats:</label>
             </div>
             <div class="col-12">
-                <input type="text" name="postadresplaats" id="postadresplaats" value="<?= get_option('duracom_settings_postadresplaats') ?>" />
+                <input type="text" name="postadresplaats" id="postadresplaats" value="<?= get_option('valkemedia_settings_postadresplaats') ?>" />
             </div>
             <div class="col-12 mt-20">
                 <label for="postadrespostcode">Postadres postcode:</label>
             </div>
             <div class="col-12">
-                <input type="text" name="postadrespostcode" id="postadrespostcode" value="<?= get_option('duracom_settings_postadrespostcode') ?>" />
+                <input type="text" name="postadrespostcode" id="postadrespostcode" value="<?= get_option('valkemedia_settings_postadrespostcode') ?>" />
             </div>
             <div class="col-12 mt-20">
                 <label for="gmapsurl">Google maps url:</label>
             </div>
             <div class="col-12">
-                <input type="text" name="gmapsurl" id="gmapsurl" value="<?= get_option('duracom_settings_gmapsurl') ?>" />
+                <input type="text" name="gmapsurl" id="gmapsurl" value="<?= get_option('valkemedia_settings_gmapsurl') ?>" />
             </div>
         </div>
         <div class="col-12 mt-20">
@@ -203,19 +203,19 @@ function duracom_settings_menu_page()
                 <label for="facebook">Facebook url:</label>
             </div>
             <div class="col-12">
-                <input type="text" name="facebook" id="facebook" value="<?= get_option('duracom_settings_facebook') ?>" />
+                <input type="text" name="facebook" id="facebook" value="<?= get_option('valkemedia_settings_facebook') ?>" />
             </div>
             <div class="col-12 mt-20">
                 <label for="facebook">LinkedIn url:</label>
             </div>
             <div class="col-12">
-                <input type="text" name="linkedin" id="linkedin" value="<?= get_option('duracom_settings_linkedin') ?>" />
+                <input type="text" name="linkedin" id="linkedin" value="<?= get_option('valkemedia_settings_linkedin') ?>" />
             </div>
             <div class="col-12 mt-20">
                 <label for="facebook">Instragram url:</label>
             </div>
             <div class="col-12">
-                <input type="text" name="instagram" id="instagram" value="<?= get_option('duracom_settings_instagram') ?>" />
+                <input type="text" name="instagram" id="instagram" value="<?= get_option('valkemedia_settings_instagram') ?>" />
             </div>
         </div>
         <div class="col-12 mt-20">
@@ -226,43 +226,43 @@ function duracom_settings_menu_page()
                 <label for="maandag">Maandag:</label>
             </div>
             <div class="col-12">
-                <input type="text" name="maandag" id="maandag" value="<?= get_option('duracom_settings_maandag') ?>" />
+                <input type="text" name="maandag" id="maandag" value="<?= get_option('valkemedia_settings_maandag') ?>" />
             </div>
             <div class="col-12 mt-20">
                 <label for="dinsdag">Dinsdag:</label>
             </div>
             <div class="col-12">
-                <input type="text" name="dinsdag" id="dinsdag" value="<?= get_option('duracom_settings_dinsdag') ?>" />
+                <input type="text" name="dinsdag" id="dinsdag" value="<?= get_option('valkemedia_settings_dinsdag') ?>" />
             </div>
             <div class="col-12 mt-20">
                 <label for="woensdag">Woensdag:</label>
             </div>
             <div class="col-12">
-                <input type="text" name="woensdag" id="woensdag" value="<?= get_option('duracom_settings_woensdag') ?>" />
+                <input type="text" name="woensdag" id="woensdag" value="<?= get_option('valkemedia_settings_woensdag') ?>" />
             </div>
             <div class="col-12 mt-20">
                 <label for="donderdag">Donderdag:</label>
             </div>
             <div class="col-12">
-                <input type="text" name="donderdag" id="donderdag" value="<?= get_option('duracom_settings_donderdag') ?>" />
+                <input type="text" name="donderdag" id="donderdag" value="<?= get_option('valkemedia_settings_donderdag') ?>" />
             </div>
             <div class="col-12 mt-20">
                 <label for="vrijdag">Vrijdag:</label>
             </div>
             <div class="col-12">
-                <input type="text" name="vrijdag" id="vrijdag" value="<?= get_option('duracom_settings_vrijdag') ?>" />
+                <input type="text" name="vrijdag" id="vrijdag" value="<?= get_option('valkemedia_settings_vrijdag') ?>" />
             </div>
             <div class="col-12 mt-20">
                 <label for="zaterdag">Zaterdag:</label>
             </div>
             <div class="col-12">
-                <input type="text" name="zaterdag" id="zaterdag" value="<?= get_option('duracom_settings_zaterdag') ?>" />
+                <input type="text" name="zaterdag" id="zaterdag" value="<?= get_option('valkemedia_settings_zaterdag') ?>" />
             </div>
             <div class="col-12 mt-20">
                 <label for="zondag">Zondag:</label>
             </div>
             <div class="col-12">
-                <input type="text" name="zondag" id="zondag" value="<?= get_option('duracom_settings_zondag') ?>" />
+                <input type="text" name="zondag" id="zondag" value="<?= get_option('valkemedia_settings_zondag') ?>" />
             </div>
         </div>
         <div class="col-12 mt-20">
@@ -273,13 +273,13 @@ function duracom_settings_menu_page()
                 <label for="headline1">Headline 1:</label>
             </div>
             <div class="col-12">
-                <textarea name="headline1" id="headline1"><?= get_option('duracom_settings_headline1') ?></textarea>
+                <textarea name="headline1" id="headline1"><?= get_option('valkemedia_settings_headline1') ?></textarea>
             </div>
             <div class="col-12 mt-20">
                 <label for="headline2">Headline 2:</label>
             </div>
             <div class="col-12">
-                <textarea name="headline2" id="headline2"><?= get_option('duracom_settings_headline2') ?></textarea>
+                <textarea name="headline2" id="headline2"><?= get_option('valkemedia_settings_headline2') ?></textarea>
             </div>
         </div>
         <div class="col-12 mt-20">
@@ -290,13 +290,13 @@ function duracom_settings_menu_page()
                 <label for="excerptlengthshort">Excerpt length (short):</label>
             </div>
             <div class="col-12">
-                <input type="number" name="excerptlengthshort" id="excerptlengthshort" value="<?= get_option('duracom_settings_excerptlengthshort') ?>" />
+                <input type="number" name="excerptlengthshort" id="excerptlengthshort" value="<?= get_option('valkemedia_settings_excerptlengthshort') ?>" />
             </div>
             <div class="col-12 mt-20">
                 <label for="excerptlengthlong">Excerpt length (long):</label>
             </div>
             <div class="col-12">
-                <input type="number" name="excerptlengthlong" id="excerptlengthlong" value="<?= get_option('duracom_settings_excerptlengthlong') ?>" />
+                <input type="number" name="excerptlengthlong" id="excerptlengthlong" value="<?= get_option('valkemedia_settings_excerptlengthlong') ?>" />
             </div>
         </div>
         <div class="col-12 mt-20">
@@ -305,7 +305,7 @@ function duracom_settings_menu_page()
                 </span>
         </div>
         <div class="col-12 mt-20">
-            <i>Module door <a href="https://www.duracom.nl" target="_blank" title="Duracom Internetdiensten">Duracom</a></i>
+            <i>Module door <a href="https://www.valkemedia.nl" target="_blank" title="Valkemedia">Valkemedia</a></i>
         </div>
     </div>
     <script type="text/javascript">
@@ -313,7 +313,7 @@ function duracom_settings_menu_page()
 
         function updateOptions()
         {
-            var options = $('.duracom-container');
+            var options = $('.valkemedia-container');
             $.post(
                 '<?=plugin_dir_url(__FILE__) . 'settings/action.php'?>',
                 {
@@ -363,25 +363,25 @@ function duracom_settings_menu_page()
     <?php
 }
 
-function duracom_add_menu_page()
+function valkemedia_add_menu_page()
 {
     add_menu_page(
-        __('Duracom settings', 'duracom'),
-        __('Duracom settings', 'duracom'),
+        __('Site settings', 'valkemedia'),
+        __('Site settings', 'valkemedia'),
         'manage_options',
-        'duracom-site-module',
-        'duracom_settings_menu_page',
-        'https://www.duracom.nl/favicon.ico',
+        'valkemedia-site-module',
+        'valkemedia_settings_menu_page',
+        plugins_url('valkemedia-site-module') . '/assets/img/v.png',
         3
     );
 }
 
 /**
- * Duracom theme support inladen
+ * valkemedia theme support inladen
  */
-add_action('after_setup_theme', 'duracom_theme_support');
-if (!function_exists('duracom_theme_support')) {
-    function duracom_theme_support()
+add_action('after_setup_theme', 'valkemedia_theme_support');
+if (!function_exists('valkemedia_theme_support')) {
+    function valkemedia_theme_support()
     {
         if (class_exists('WooCommerce')) {
             add_theme_support('woocommerce');
@@ -393,9 +393,9 @@ if (!function_exists('duracom_theme_support')) {
         //add_theme_support('post-thumbnails');
         // Header
         register_sidebar([
-            'name' => esc_attr__('Header', 'duracom'),
+            'name' => esc_attr__('Header', 'valkemedia'),
             'id' => 'sidebar-header',
-            'description' => esc_attr__('Add widgets here to appear in your header.', 'duracom'),
+            'description' => esc_attr__('Add widgets here to appear in your header.', 'valkemedia'),
             'before_widget' => '<div id="%1$s" class="widget %2$s">',
             'after_widget' => '</div>',
             'before_title' => '<h3 class="widget-title">',
@@ -403,9 +403,9 @@ if (!function_exists('duracom_theme_support')) {
         ]);
         // Footer
         register_sidebar([
-            'name' => esc_attr__('Footer', 'duracom'),
+            'name' => esc_attr__('Footer', 'valkemedia'),
             'id' => 'sidebar-footer1',
-            'description' => esc_attr__('Add widgets here to appear in your footer.', 'duracom'),
+            'description' => esc_attr__('Add widgets here to appear in your footer.', 'valkemedia'),
             'before_widget' => '<div id="%1$s" class="widget %2$s">',
             'after_widget' => '</div>',
             'before_title' => '<h3 class="widget-title">',
@@ -421,8 +421,8 @@ if (!function_exists('duracom_theme_support')) {
  */
 function my_excerpt_length($length)
 {
-    if (get_option('duracom_settings_excerptlengthshort')) {
-        return get_option('duracom_settings_excerptlengthshort');
+    if (get_option('valkemedia_settings_excerptlengthshort')) {
+        return get_option('valkemedia_settings_excerptlengthshort');
     }
     return $length;
 }
@@ -442,7 +442,7 @@ function is_blog()
  *
  * @return JsonLd|string
  */
-function duracom_json_ld(array $settings, $type = 'home')
+function valkemedia_json_ld(array $settings, $type = 'home')
 {
     global $post;
     $schemas = [];
@@ -595,60 +595,60 @@ function duracom_json_ld(array $settings, $type = 'home')
     return $jsonLD;
 }
 
-add_shortcode('contactgegevens', 'duracom_contactgegevens_block');
-function duracom_contactgegevens_block()
+add_shortcode('contactgegevens', 'valkemedia_contactgegevens_block');
+function valkemedia_contactgegevens_block()
 {
     $html = '<div class="py-20 row w-100"> 
                 <div class="col-12 col-md-6 my-20">
                     <strong>'.get_bloginfo('name').'</strong><br/><br/>
-                    <i class="fas fa-map-marker-alt mr-10"></i> <strong>'.get_option('duracom_settings_woonplaats').'</strong><br/>
-                    '.get_option('duracom_settings_straatnaam').'<br/>
-                    '.get_option('duracom_settings_postcode').' '.get_option('duracom_settings_woonplaats').'<br/>
-                    <a href="tel:'.get_option('duracom_settings_telefoonnummer').'">'.get_option('duracom_settings_telefoonnummer').'</a><br/>
-                    <a href="mailto:'.get_option('duracom_settings_emailadres').'">'.get_option('duracom_settings_emailadres').'</a>
+                    <i class="fas fa-map-marker-alt mr-10"></i> <strong>'.get_option('valkemedia_settings_woonplaats').'</strong><br/>
+                    '.get_option('valkemedia_settings_straatnaam').'<br/>
+                    '.get_option('valkemedia_settings_postcode').' '.get_option('valkemedia_settings_woonplaats').'<br/>
+                    <a href="tel:'.get_option('valkemedia_settings_telefoonnummer').'">'.get_option('valkemedia_settings_telefoonnummer').'</a><br/>
+                    <a href="mailto:'.get_option('valkemedia_settings_emailadres').'">'.get_option('valkemedia_settings_emailadres').'</a>
                     <br/><br/>
                     
-                    <i class="fas fa-map-marker-alt mr-10"></i> <strong>'.get_option('duracom_settings_postadresplaats').'</strong><br/>
-                    '.get_option('duracom_settings_postadres').' '.get_option('duracom_settings_postadresnummer').'<br/>
-                    '.get_option('duracom_settings_postadrespostcode').' '.get_option('duracom_settings_postadresplaats').'
+                    <i class="fas fa-map-marker-alt mr-10"></i> <strong>'.get_option('valkemedia_settings_postadresplaats').'</strong><br/>
+                    '.get_option('valkemedia_settings_postadres').' '.get_option('valkemedia_settings_postadresnummer').'<br/>
+                    '.get_option('valkemedia_settings_postadrespostcode').' '.get_option('valkemedia_settings_postadresplaats').'
                     <br/><br/>
                     
                     <strong>KVK</strong><br/>
-                    '.get_option('duracom_settings_kvknummer').'<br/>
+                    '.get_option('valkemedia_settings_kvknummer').'<br/>
                 </div> 
                 <div class="col-12 col-md-6 my-20">
                     <h3>Openingstijden</h3><br/>
                     <table class="table w-100">
                         <tr>
-                            <td>Maandag</td><td>'.get_option('duracom_settings_maandag').'</td>
+                            <td>Maandag</td><td>'.get_option('valkemedia_settings_maandag').'</td>
                         </tr>
                         <tr>
-                            <td>Dinsdag</td><td>'.get_option('duracom_settings_dinsdag').'</td>
+                            <td>Dinsdag</td><td>'.get_option('valkemedia_settings_dinsdag').'</td>
                         </tr>
                         <tr>
-                            <td>Woensdag</td><td>'.get_option('duracom_settings_woensdag').'</td>
+                            <td>Woensdag</td><td>'.get_option('valkemedia_settings_woensdag').'</td>
                         </tr>
                         <tr>
-                            <td>Donderdag</td><td>'.get_option('duracom_settings_donderdag').'</td>
+                            <td>Donderdag</td><td>'.get_option('valkemedia_settings_donderdag').'</td>
                         </tr>
                         <tr>
-                            <td>Vrijdag</td><td>'.get_option('duracom_settings_vrijdag').'</td>
+                            <td>Vrijdag</td><td>'.get_option('valkemedia_settings_vrijdag').'</td>
                         </tr>
                         <tr>
-                            <td>Zaterdag</td><td>'.get_option('duracom_settings_zaterdag').'</td>
+                            <td>Zaterdag</td><td>'.get_option('valkemedia_settings_zaterdag').'</td>
                         </tr>
                         <tr>
-                            <td>Zondag</td><td>'.get_option('duracom_settings_zondag').'</td>
+                            <td>Zondag</td><td>'.get_option('valkemedia_settings_zondag').'</td>
                         </tr>
                     </table>
                 </div>
                 <div class="col-12 my-20"> 
                     <h3>Kaart & route</h3><br/>
-                    <iframe src="'.get_option('duracom_settings_gmapsurl').'" width="100%" height="350" style="border:0;width:calc(100% - 15px)" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe src="'.get_option('valkemedia_settings_gmapsurl').'" width="100%" height="350" style="border:0;width:calc(100% - 15px)" allowfullscreen="" loading="lazy"></iframe>
                 </div>
     
             </div>';
     return $html;
 }
 
-$duracom = new duracomSiteModule();
+$valkemedia = new siteModule();

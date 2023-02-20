@@ -1,4 +1,4 @@
-#toplevel_page_duracom-site-module img {
+#toplevel_page_valkemedia-site-module img {
     width:20px;
     height:20px;
 }
@@ -6,7 +6,7 @@
 /**
 settings menu page
  */
-.duracom-container {
+.valkemedia-container {
     display: flex;
     flex-flow: row wrap;
     width: 100%;
@@ -54,9 +54,9 @@ label {
     border-top: 1px solid #bcbcbc;
 }
 
-.duracom-container input,
-.duracom-container select,
-.duracom-container textarea {
+.valkemedia-container input,
+.valkemedia-container select,
+.valkemedia-container textarea {
     min-width: 350px;
 }
 
